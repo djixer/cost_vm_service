@@ -1,0 +1,28 @@
+<head>
+</head>
+
+<body>
+    <p>1) Передайте параметры ВМ для рассчёта стоимости в виде: <a href="http://localhost:5678/cost?cpu=2&ram=4&hdd_type=ssd&hdd_capacity=500">/cost?cpu=<b>2</b>&ram=<b>4</b>&hdd_type=ssd&hdd_capacity=<b>500</b></a></p>
+    <p>2) Добавим в запрос дополнительные диски. Например, три дополнительных диска:
+        <a href="http://localhost:5678/cost?cpu=2&ram=4&hdd_type=ssd&hdd_capacity=500&volumes%5Bdisk_1%5D%5Bhdd_capacity%5D=200&volumes%5Bdisk_1%5D%5Bhdd_type%5D=sata&volumes%5Bdisk_2%5D%5Bhdd_capacity%5D=500&volumes%5Bdisk_2%5D%5Bhdd_type%5D=ssd&volumes%5Bdisk_3%5D%5Bhdd_capacity%5D=500&volumes%5Bdisk_3%5D%5Bhdd_type%5D=sata">sata 200, ssd 500 и sata 500</a></p>
+    <% @prices.each do |hardware| %>
+        <%= hardware.type %>: <%= hardware.price %><br>
+    <% end %>
+<br>
+<p>Стоимость дисков:</p>
+    <table>
+        <tr>
+            <th>Тип диска</th>
+            <th>Объём</th>
+            <th>Цена</th>
+        </tr>
+
+      <% @hdd_prices.each do |hdd| %>
+        <tr>
+            <td><%= hdd.type %></td>
+            <td><%= hdd.capacity %></td>
+            <td><%= hdd.price %></td>
+        </tr>
+      <% end %>
+    </table>
+</body>
